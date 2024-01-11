@@ -49,4 +49,34 @@ public class ProduitService {
 	            }
 	        }
 	    }
+	    
+	  //mettre a jour les produits 
+	    public void mettreAJourProduit(Produit produitMaj) 
+	    { 
+	    try{
+	        if (!produitExisteParId(produitMaj.getId())) 
+	        {
+	        	throw new IllegalArgumentException("Erreur : Produit non trouvé avec l'ID " + produitMaj.getId());
+	        }
+	        if (produitMaj.getPrix() < 0 || produitMaj.getQuantite() < 0) 
+	        {
+	            System.out.println("Erreur : Le prix et la quantité des produits doivent être positifs.");
+	            return;
+	        }
+
+	        for (int i = 0;i< produits.size();i++) 
+	        {	Produit produit = produits.get(i);
+	            if (produit.getId().equals(produitMaj.getId())) 
+	            { 	            	
+	                produits.set(i,produitMaj);
+	                System.out.println("Produit mis à jour avec succès : " + produitMaj);
+	                return;
+	            }
+	        }
+	    }
+	    catch (IllegalArgumentException e) 
+	    {
+	        System.out.println(e.getMessage());
+	    }
+	   }
 }
