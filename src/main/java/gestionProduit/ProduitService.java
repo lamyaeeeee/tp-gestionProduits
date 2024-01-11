@@ -34,4 +34,19 @@ public class ProduitService {
 	    private boolean produitExisteParNom(String nom) {
 	        return produits.stream().anyMatch(produit -> produit.getNom().equalsIgnoreCase(nom));
 	    }
+	    
+	  //lecture des produits 
+	    public void lireProduits() 
+	    {	if (produits.isEmpty()) 
+	        {
+	            System.out.println("Aucun produit n'est disponible");
+	        } 
+	        else {
+	            System.out.println("Liste des produits:");
+	            for (Produit produit : produits) 
+	            {
+	                System.out.println(produit);
+	            }
+	        }
+	    }
 }
