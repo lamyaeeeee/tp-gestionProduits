@@ -79,4 +79,35 @@ public class ProduitService {
 	        System.out.println(e.getMessage());
 	    }
 	   }
+	    
+	    //supression dun produit
+	    public void supprimerProduit(Long productId) {
+	        try {
+	            Produit produitASupp = lireProduit(productId);
+	            if (produitASupp != null) 
+	            {
+	                produits.remove(produitASupp);
+	                System.out.println("Produit supprimé avec succès !");
+	            } 
+	            else 
+	            {
+	                throw new Exception("Erreur lors de la suppression du produit");
+	            }
+	        } catch (Exception e) {
+	            System.out.println(e.getMessage());
+	        }
+	    }
+
+	    
+	    public Produit lireProduit(Long productId) {
+	        for (Produit produit : produits) 
+	        {
+	            if (produit.getId().equals(productId)) 
+	            {
+	                return produit;
+	            }
+	        }
+	        System.out.println("Erreur : Le produit avec l'ID " + productId + " n'existe pas.");
+	        return null;
+	    }
 }
